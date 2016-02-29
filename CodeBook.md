@@ -227,6 +227,9 @@ names(activityLabels) <- c("number", "activity")
 features <- read.table(".\\UCI HAR Dataset\\features.txt")
 features[,2] <- as.character(features[,2])
 featureNames <- features[,2]
+## Find all the mean and std measurements that are not meanFreq()
+ExtractNames <- grepl(".*mean.*|.*std.*", featureNames) &! grepl("meanFreq", featureNames)
+finalNames <- featureNames[ExtractNames]
 ```
 
 ### Activity labels:
